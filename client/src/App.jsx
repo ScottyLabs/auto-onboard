@@ -65,7 +65,7 @@ function App() {
 
     const onSubmit = (event) => {
         if (validateName(name) && validateAndrew(andrew) && validateCommittee(committeePref)) {
-            console.log({name, andrew: (andrew || "").toLowerCase(), committeePref, mailingList});
+            console.log({ name, andrew: (andrew || "").toLowerCase(), committeePref, mailingList });
         }
     }
 
@@ -75,32 +75,32 @@ function App() {
             <Container componknt="main" maxWidth="md">
                 <FormControl component="form" fullWidth>
                     <Grid container spacing={2} marginTop={2}>
-                        <Grid item xs={12}> 
+                        <Grid item xs={12}>
                             <Typography variant="h4">ScottyLabs Onboarding</Typography>
                         </Grid>
-                        <Grid item xs={12}> 
-                            <TextField 
-                                variant="outlined" 
-                                label="Name" 
-                                fullWidth 
-                                required 
-                                value={name} 
-                                onChange={onNameChange} 
-                                error={nameError} 
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                label="Name"
+                                fullWidth
+                                required
+                                value={name}
+                                onChange={onNameChange}
+                                error={nameError}
                                 helperText={nameError ? 'Name cannot be blank.' : undefined}
-                                />
+                            />
                         </Grid>
-                        <Grid item xs={12}> 
-                            <TextField 
-                                variant="outlined" 
-                                label="Andrew ID" 
-                                fullWidth 
-                                required 
-                                value={andrew} 
-                                onChange={onAndrewChange} 
-                                error={andrewError} 
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                label="Andrew ID"
+                                fullWidth
+                                required
+                                value={andrew}
+                                onChange={onAndrewChange}
+                                error={andrewError}
                                 helperText={andrewError ? 'Andrew ID must be valid.' : undefined}
-                                />
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -123,7 +123,7 @@ function App() {
                                 ))}
                             </TextField>
                         </Grid>
-                        <Grid item xs={12}> 
+                        <Grid item xs={12}>
                             <Typography variant="body2">By submitting this form, you will be added to the ScottyLabs mailing list.</Typography>
                         </Grid>
                         <Grid item xs={12}>
