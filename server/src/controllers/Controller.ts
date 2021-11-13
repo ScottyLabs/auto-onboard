@@ -10,7 +10,7 @@ export const submitForm = async (
     try {
         const respondent = new Respondent(validateBody(req.body));
         await respondent.save();
-        res.send(await Respondent.find());
+        res.send('Success!');
     } catch (e) {
         res.status(400).send(e);
     }
