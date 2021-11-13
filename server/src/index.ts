@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import router from './src/routes';
+import router from './routes';
 
 const PORT = 3000;
 

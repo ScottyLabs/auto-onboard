@@ -22,7 +22,7 @@
         "ts-node": "^10.4.0"
     },
     "scripts": {
-        "start": "doppler run -- nodemon index.ts",
+        "start": "doppler run -- nodemon src/index.ts",
         "build": "tsc --project ./"
     }
 }
