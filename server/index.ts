@@ -1,12 +1,28 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
-const app = express();
-const port = 3000;
+import router from './src/routes';
 
-app.get('/', (req, res) => {
-    res.send(process.env.MONGO);
-});
+const PORT = 3000;
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+const MONGODB_URI =
+    process.env.MONGO || 'mongodb://localhost:27017/auto-onboard';
+
+const ENV = process.env.NODE_ENV || 'development';
+
+async function main() {
+    await mongoose.connect(MONGODB_URI, {
+        autoIndex: ENV == 'development',
+    });
+
+    const app = express();
+    app.use(express.json());
+
+    app.use('/', router);
+
+    app.listen(PORT, () => {
+        console.log(`Example app listening at http://localhost:${PORT}`);
+    });
+}
+
+main().catch((err) => console.log(err));
