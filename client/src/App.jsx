@@ -22,8 +22,6 @@ function App() {
     const [committeePref, setCommitteePref] = React.useState([]);
     const [prefError, setPrefError] = React.useState(false);
 
-    const [mailingList, setMailingList] = React.useState(true);
-
     const validateName = (name) => {
         const hasError = (name || "").length === 0;
         setNameError(hasError);
@@ -65,7 +63,7 @@ function App() {
 
     const onSubmit = (event) => {
         if (validateName(name) && validateAndrew(andrew) && validateCommittee(committeePref)) {
-            console.log({ name, andrew: (andrew || "").toLowerCase(), committeePref, mailingList });
+            console.log({ name, andrew: (andrew || "").toLowerCase(), committeePref });
         }
     }
 
