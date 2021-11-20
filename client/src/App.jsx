@@ -16,7 +16,7 @@ function App() {
             </Helmet>
             <CssBaseline />
             <Router>
-                <Container component="main" maxWidth="md">
+                <Container component="main" maxWidth="sm">
                     <Routes>
                         <Route path="/" element={<Form />} />
                     </Routes>

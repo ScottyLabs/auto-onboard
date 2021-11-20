@@ -195,6 +195,13 @@ function Form() {
                             loading={responseStatus === responseStates.LOADING}
                             variant="contained"
                             onClick={onSubmit}
+                            fullWidth
+                            style={{
+                                borderRadius: '2.5rem',
+                                marginTop: '2rem',
+                                background:
+                                    'linear-gradient(89.03deg, #1437A8 0%, #C8315B 100%)',
+                            }}
                         >
                             Submit
                         </LoadingButton>
