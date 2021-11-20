@@ -9,6 +9,7 @@ export const submitForm = async (
     console.log(req.body);
     try {
         const respondent = new Respondent(validateBody(req.body));
+        console.log(respondent);
         await respondent.save();
         res.send('Success!');
     } catch (e) {
@@ -39,5 +40,6 @@ const validateBody = (body: any): IRespondent => {
         name: body.name,
         andrewId: body.andrew.toLowerCase(),
         preference: body.committeePref,
+        submissionTime: Date.now(),
     };
 };

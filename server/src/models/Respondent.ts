@@ -10,6 +10,7 @@ export interface IRespondent {
     name: string;
     andrewId: string;
     preference: string[];
+    submissionTime: number;
 }
 
 const respondentSchema = new mongoose.Schema({
@@ -24,6 +25,10 @@ const respondentSchema = new mongoose.Schema({
     preference: {
         type: [String],
         enum: Committee,
+        required: true,
+    },
+    submissionTime: {
+        type: Date,
         required: true,
     },
 });
