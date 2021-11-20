@@ -1,5 +1,6 @@
 import axios from 'axios';
 import '../App.css';
+import { Helmet } from 'react-helmet';
 import EmailLink from '../components/EmailLink';
 import {
     Button,
@@ -110,6 +111,9 @@ function Form() {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>ScottyLabs Auto-Onboard</title>
+            </Helmet>
             <FormControl component="form" fullWidth>
                 <Grid container spacing={2} marginTop={2}>
                     <Grid item xs={12}>

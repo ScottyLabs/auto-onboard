@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Helmet } from 'react-helmet';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Container, CssBaseline } from '@mui/material';
@@ -10,6 +11,9 @@ const theme = createTheme();
 function App() {
     return (
         <ThemeProvider theme={theme}>
+            <Helmet>
+                <title>ScottyLabs</title>
+            </Helmet>
             <CssBaseline />
             <Router>
                 <Container component="main" maxWidth="md">
