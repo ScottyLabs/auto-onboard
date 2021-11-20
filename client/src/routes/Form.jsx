@@ -1,5 +1,6 @@
 import axios from 'axios';
 import '../App.css';
+import EmailLink from '../components/EmailLink';
 import {
     Button,
     Checkbox,
@@ -207,7 +208,8 @@ function Form() {
                         internet connection, and try again.
                     </DialogContentText>
                     <DialogContentText>
-                        If problems persist, please let us know at {EMAIL}.
+                        If problems persist, please let us know at{' '}
+                        <EmailLink>{EMAIL}</EmailLink>.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -228,7 +230,8 @@ function Form() {
                     </DialogContentText>
                     <DialogContentText>
                         In the meantime, if you have any questions, please let
-                        us know on Slack, or contact us at {EMAIL}.
+                        us know on Slack, or contact us at{' '}
+                        <EmailLink>{EMAIL}</EmailLink>.
                     </DialogContentText>
                     <DialogActions>
                         <Button onClick={handleDialogClose}>Continue</Button>
