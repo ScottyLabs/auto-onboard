@@ -23,7 +23,7 @@ async function main() {
     app.use('/', router);
 
     app.listen(PORT, () => {
-        console.log(`Example app listening at http://localhost:${PORT}`);
+        console.log(`Listening on http://localhost:${PORT}`);
     });
 }
 
