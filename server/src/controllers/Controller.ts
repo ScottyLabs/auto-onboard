@@ -2,25 +2,26 @@ import { Request, Response } from 'express';
 import Respondent, { IRespondent, Committee } from '../models/Respondent';
 import axios from 'axios';
 import fsPromises from 'fs/promises';
+import FormData from 'form-data';
 
 const EMAIL_TEMPLATE = 'src/email/shell.html';
 
 const MAILGUN_ENDPOINT =`https://api.mailgun.net/v3/${process.env.MAILGUN_DOMAIN}/messages`;
-const SENDER = undefined;
-const REPLY_TO = undefined;
+
+const SENDER = process.env.MAILGUN_SENDER;
 const API_KEY = process.env.MAILGUN_API_KEY;
 
 export const submitForm = async (
     req: Request,
     res: Response
 ): Promise<void> => {
-    console.log('post received');
     try {
         const respondent = validateBody(req.body);
         await (new Respondent(respondent)).save();
-        res.send('Success!');
         await sendEmail(respondent);
+        res.send('Success!');
     } catch (e) {
+        // console.error(e);
         res.status(400).send(e);
     }
 };
@@ -54,23 +55,24 @@ const validateBody = (body: any): IRespondent => {
 
 const sendEmail = async (respondent: IRespondent) => {  
     const template = await fsPromises.readFile(EMAIL_TEMPLATE, 'utf8');
-    const html = template.replace('\{name\}', respondent.name);
+    const html = template.replace('{name}', respondent.name);
 
-    return axios.post(
-        MAILGUN_ENDPOINT, 
-        {
-            from: SENDER,
-            to: `${respondent.andrewId}@andrew.cmu.edu`,
-            'h:Reply-To': REPLY_TO,
-            subject: 'Welcome to ScottyLabs!',
-            html,
-        },
-        {
-            auth: {
-                username: 'api',
-                password: API_KEY,
-            }
-        }
-    ); 
+    const data = new FormData();
+    // because postman doesn't take JSON for some reason!!!
+    data.append('from', SENDER);
+    data.append('to', `${respondent.andrewId}@andrew.cmu.edu`);
+    data.append('subject', 'Welcome to ScottyLabs!');
+    data.append('html', html);
+
+    return axios({
+        method: 'POST',
+        url: MAILGUN_ENDPOINT,
+        data,
+        headers: data.getHeaders(),
+        auth:{
+            username: 'api',
+            password: API_KEY,
+        } 
+    });
 }
 
